@@ -4,14 +4,17 @@ body{
     // background-color: #000;
     
 }
+
 .main{
     background-image:  url('../../../assets/cvag.jpg');
     background-position: center top;
     background-repeat: no-repeat;
-    background-color: #5691ff;
+    height: 100%;
+    // background-color: #5691ff;
 }
 .registration-form{
-    padding: 50px 0;
+    padding: 290px 0;
+    height: 90%;
     
 }
 // .form-group{
@@ -24,7 +27,7 @@ body{
 .registration-form form{
     background-color: #fff;
     max-width: 500px;
-    // max-height: 600px;
+    max-height: 350px;
     margin: auto;
     padding: 50px 70px;
     border-top-left-radius: 30px;
@@ -125,12 +128,13 @@ float: left;
 .logo1{
 width:100px;
 height:100px;
-margin-top:-19rem;
+margin-top:-27.9rem;
 margin-left: 65rem;
 // float: right;
 }
 .footer{
 float: left;
+margin-top:5rem;
 margin-left: 500px;
 font-style: normal;
 font-size: 0.9rem;

@@ -6,21 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  // shoes;
-  constructor() { }
-  step = 0;
 
-  setStep(index: number) {
-    this.step = index;
-  }
+  constructor() { }
+
   ngOnInit() {
   }
-  shoes: typesOfShoes[]=[
-    {id:1,name:'bread'},{id:2,name:'juice'}
-    ]
-}
 
-export class typesOfShoes{
-id:number
-name:string
 }
