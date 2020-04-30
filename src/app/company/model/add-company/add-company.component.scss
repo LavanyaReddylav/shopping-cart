@@ -1,0 +1,51 @@
+// $text-color: rgb(148, 144, 144); //text color grey
+
+// mat-icon{
+//     color: $text-color;
+// }
+
+// mat-select{
+//     font-size: 0.8rem;
+// }
+// .others{
+//     font-size: 0.8rem;
+// } 
+
+mat-form-field{
+    max-width: 12rem;
+    font-size: 0.9rem;
+}
+button{
+    // background-color: #228b22;
+    color: #228b22 !important;
+}
+.main{
+    padding:0 2rem 0 2rem;
+    
+}
+h2{
+    color:#228b22 ;
+    text-align: left;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+    // background-color: #228b22;
+
+  }
+  ng-template{
+    background-color: #228b22;
+
+  }
+  mat-step{
+    background-color: #228b22;
+
+  }
+  
+  .mat-form-field {
+    margin-top: 16px;
+  }
+
+  ::ng-deep mat-step-header .mat-step-icon-selected {
+    background-color: #228b22 !important; 
+ }

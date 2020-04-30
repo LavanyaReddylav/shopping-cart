@@ -1,14 +1,100 @@
-<!-- <app-list></app-list>-->
-<!-- <mat-toolbar color="primary" class="app-header"> -->
-    <!-- <div><a href="https://www.positronx.io" target="_blank" class="positronx">PositronX.io</a></div> -->
-    <!-- <span class="nav-tool-items">
-      <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
-      <a mat-button routerLink="signup" routerLinkActive="active">Signup</a>
-      <a mat-button routerLink="datagrid" routerLinkActive="active">DataGrid</a> -->
-      <!-- <a mat-button routerLink="login1" routerLinkActive="active">Log in 1</a> -->
-      <!-- <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a> -->
-    <!-- </span>
-  </mat-toolbar> -->
-  
+
   <router-outlet></router-outlet>
-<!-- <router-outlet></router-outlet> -->
+  <!-- <div id="logo-img" routerLink='/'></div> -->
+
+<!-- Main Page layout content -->
+<div> 
+<mat-toolbar  class="mat-elevation-z6">
+  <div  fxLayout class="icon">
+    <button mat-icon-button (click)="sidenav.toggle()" class="menu"><mat-icon>menu</mat-icon></button>
+    <div id="logo">CVAG</div>
+  </div>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+
+    <div class="user-account" fxLayout fxLayoutAlign="center center" [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item class="mat-menu-item" (click)="ChangePassword()">
+          <mat-icon>vpn_key</mat-icon>
+          <span>Change Password</span>
+        </button>
+        <button mat-menu-item class="mat-menu-item">
+          <mat-icon>settings</mat-icon>
+          <span>Settings</span>
+        </button>
+        <button mat-menu-item class="mat-menu-item" (click)="logoutUser()">
+          <mat-icon>power_settings_new</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" fxHide.xs opened class="material-sidenav-left mat-elevation-z3" fixedInViewport
+    fixedTopGap="56" #sidenav>
+    <mat-nav-list class="sidenav-list">
+      <a mat-list-item routerLink='company' routerLinkActive="activated-link">
+        <mat-icon>location_city
+        </mat-icon>
+        <span class="snav-caption">Companies</span>
+      </a>
+      <a mat-list-item routerLink='user' routerLinkActive="activated-link">
+        <mat-icon>layers</mat-icon>
+        <span class="snav-caption">Contracts</span>
+      </a>
+      <a mat-list-item routerLink='loc' routerLinkActive="activated-link">
+        <mat-icon>menu_book</mat-icon>
+        <span class="snav-caption">Letter of Credit</span>
+      </a>
+      <a mat-list-item routerLink='bookings' routerLinkActive="activated-link">
+        <mat-icon>library_books
+        </mat-icon>
+        <span class="snav-caption">Bookings</span>
+      </a>
+      <a mat-list-item routerLink='distributor' routerLinkActive="activated-link">
+        <mat-icon>local_play</mat-icon>
+        <span class="snav-caption">Releases</span>
+      </a>
+      <a mat-list-item routerLink='product' routerLinkActive="activated-link">
+        <mat-icon>style</mat-icon>
+        <span class="snav-caption">Tickets</span>
+      </a>
+      <a mat-list-item routerLink='msm' routerLinkActive="activated-link">
+        <mat-icon>receipt</mat-icon>
+        <span class="snav-caption">Reports</span>
+      </a>
+      <a mat-list-item routerLink='ekyc' routerLinkActive="activated-link">
+        <mat-icon>settings</mat-icon>
+        <span class="snav-caption">Maintainace</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav mode="side" position="end" opened="false" class="material-sidenav-right">
+    'Fixed' : Sidenav
+  </mat-sidenav>
+
+  <mat-sidenav-content class="sidenav-content">
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+</div>
+    <!-- <ngx-spinner bdColor="rgba(255,255,255,0.8)" size="medium" color="#3F51B5" type="line-scale">
+      <p style="font-size: 1rem; color: #3F51B5">Loading...</p>
+    </ngx-spinner> -->
+<!-- <div class="fab" fxLayout fxLayoutAlign="end">
+  <button mat-fab color="primary" (click)="captureScreen()">
+    <mat-icon>camera_alt</mat-icon>
+  </button>
+</div> -->
+<!-- <mat-toolbar color="accent" class="toolbar-footer">
+  <span>Footer</span>
+</mat-toolbar> -->
+
+<!-- <br> -->
+<!-- <mat-progress-bar mode="indeterminate" value="40" color="primary"></mat-progress-bar> -->

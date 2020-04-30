@@ -1,0 +1,61 @@
+<div fxLayout fxLayoutAlign="space-between">
+    <div>
+        <button mat-raised-button  (click)="openDialog()">
+            <mat-icon>add_circle</mat-icon>&nbsp;<span><strong>Add Booking</strong></span>
+        </button>
+    </div>
+</div>
+<br>
+
+<!-- Filters section -->
+<mat-card>
+<mat-card-header>
+  <mat-card-title>
+    <h4>Filters <mat-icon>layers</mat-icon>
+    </h4>
+  </mat-card-title>
+</mat-card-header>
+<form >
+  <div fxLayout fxLayoutGap="2rem" class="filters">
+        <!--  starting date  -->
+        <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" placeholder="From Due Date" >
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1 [disabled]="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <!--  ending date  -->
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="To Due Date" >
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+  <div>
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of status" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button (click)="loadBeats()">
+    <mat-icon>autorenew</mat-icon>&nbsp;<span><strong>Load</strong></span>
+  </button>
+  <button mat-raised-button  class="export" (click)="export()" >
+    <mat-icon>open_in_new</mat-icon>&nbsp;<span><strong>Export</strong></span>
+  </button>
+  </div>
+<br><br>
+
+     <!--Load And Export-->
+<!-- <div fxLayout fxLayoutGap="1rem">
+  </div> -->
+</form>
+
+</mat-card>
+<br>

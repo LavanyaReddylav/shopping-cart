@@ -4,12 +4,12 @@ body {
     color: #222;
     background: #f8f8f8;
     font-weight: 400;
-  font-family: 'Lato', sans-serif;
+    font-family: 'Lato', sans-serif;
   }
   
   .main {
     background: #f8f8f8;
-    padding: 100px 0;
+    padding: 40px 0;
   }
   
   .signup {
@@ -33,7 +33,7 @@ body {
   }
   
   .signup-content {
-    padding: 75px 0;
+    padding: 45px 0;
   }
   
   display-flex,
@@ -57,9 +57,9 @@ body {
     margin-bottom: 33px;
   }
   
-  .form-title {
-    margin-left:4rem;
-  }
+  // .form-title {
+  //   margin-left:4rem;
+  // }
   .signup-form h2 {
     line-height: 1.66;
     margin: 0;
@@ -94,13 +94,15 @@ body {
     font-size: 20px;
   }
   .zmdi {
-    display: inline-block;
+    display:inline;
     font: normal normal normal 14px/1 "Material-Design-Iconic-Font";
     font-size: 20px;
     text-rendering: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    // -webkit-font-smoothing: antialiased;
+    // -moz-osx-font-smoothing: grayscale;
   }
+  
   input {
     width: 100%;
     display: block;
@@ -163,7 +165,7 @@ body {
   input[type="checkbox"]:not(old) + label {
     display: inline-block;
     line-height: 1.5em;
-    margin-top: 6px;
+    // margin-top: 6px;
   }
   
   .form-group:last-child {
@@ -171,7 +173,7 @@ body {
   }
   .form-submit {
     display: inline-block;
-    background: #6dabe4;
+    background: #146C2D;
     color: #fff;
     border-bottom: none;
     width: auto;
@@ -182,7 +184,7 @@ body {
     -o-border-radius: 5px;
     -ms-border-radius: 5px;
     margin-top: 25px;
-    margin-left: 4rem;
+    // margin-left: 4rem;
     cursor: pointer;
   }
   
@@ -198,20 +200,27 @@ body {
     margin-bottom: 50px;
     text-align: center;
   }
-  .signup-image .signup-image-link {
+  .signup-image  {
     font-size: 20px;
     color: #222;
     display: block;
     text-align: center;
   }
+  .signup-image-link {
+    font-size: 20px;
+    color: #000000 !important;
+    display: block;
+  
+}
   a:-webkit-any-link {
-    color: -webkit-link;
+    // color: -webkit-link;
     cursor: pointer;
     text-decoration: underline;
   }
   .signup-image img {
     max-width: 100%;
     height: auto;
+    align-items: center;
   }
   
   /* signIn */
@@ -315,4 +324,17 @@ body {
   .lavanya .red {
     color: red;
   }
-  
+  input[type=checkbox]:not(old)+label {
+    display: inline-block;
+    line-height: 1.5em;
+    margin-top: 6px;
+}
+.label-agree-term {
+    // position: relative;
+    top: 0%;
+    transform: translateY(0);
+    -moz-transform: translateY(0);
+    -webkit-transform: translateY(0);
+    -o-transform: translateY(0);
+    -ms-transform: translateY(0);
+}

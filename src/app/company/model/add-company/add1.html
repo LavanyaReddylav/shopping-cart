@@ -1,0 +1,250 @@
+
+<div class="main">
+    <h2 mat-dialog-title>Add New Company
+    </h2>
+    <br>
+    <mat-dialog-content>
+      <form [formGroup]="userForm">
+        <div class="form-group" fxLayout fxLayoutGap="2rem">
+          <!-- username -->
+          <div>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Name" formControlName="name">
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <button mat-button *ngIf="userForm.get('name').value" matSuffix mat-icon-button
+                (click)="userForm.get('name').setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error *ngIf="userForm.get('name').hasError('required')">
+                Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- mobile number -->
+          <div>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Company No" formControlName="company_no" [errorStateMatcher]="matcher">
+              <mat-icon matSuffix>dialpad</mat-icon>
+              <button mat-button *ngIf="userForm.get('company_no').value" matSuffix mat-icon-button
+                (click)="userForm.get('company_no').setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error *ngIf="userForm.get('company_no').hasError('required')">
+                Company No is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- email -->
+          <div>
+            <mat-form-field>
+              <input matInput type="text" placeholder="Category" formControlName="category" [errorStateMatcher]="matcher">
+              <mat-icon matSuffix>category</mat-icon>
+              <button mat-button *ngIf="userForm.get('category').value" matSuffix mat-icon-button
+                (click)="userForm.get('category').setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error *ngIf="userForm.get('category').hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-group" fxLayout fxLayoutGap="2rem">
+            <!-- username -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Short Name" formControlName="short_name">
+                <mat-icon matSuffix>person_pin_circle</mat-icon>
+                <button mat-button *ngIf="userForm.get('short_name').value" matSuffix mat-icon-button
+                  (click)="userForm.get('short_name').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('short_name').hasError('required')">
+                  Short Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- mobile number -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Invoice" formControlName="invoice" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>description</mat-icon>
+                <button mat-button *ngIf="userForm.get('invoice').value" matSuffix mat-icon-button
+                  (click)="userForm.get('invoice').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('invoice').hasError('required')">
+                  Invoice is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- email -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Address" formControlName="address" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>account_box</mat-icon>
+                <button mat-button *ngIf="userForm.get('address').value" matSuffix mat-icon-button
+                  (click)="userForm.get('address').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('address').hasError('required')">
+                  Address is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group" fxLayout fxLayoutGap="2rem">
+            <!-- username -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="City" formControlName="city">
+                <mat-icon matSuffix>business</mat-icon>
+                <button mat-button *ngIf="userForm.get('city').value" matSuffix mat-icon-button
+                  (click)="userForm.get('city').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('city').hasError('required')">
+                  City is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- mobile number -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="State" formControlName="state" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>apartment</mat-icon>
+                <button mat-button *ngIf="userForm.get('state').value" matSuffix mat-icon-button
+                  (click)="userForm.get('state').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('state').hasError('required')">
+                    State is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- email -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>drag_indicator</mat-icon>
+                <button mat-button *ngIf="userForm.get('zipcode').value" matSuffix mat-icon-button
+                  (click)="userForm.get('zipcode').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('zipcode').hasError('required')">
+                  Zipcode is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group" fxLayout fxLayoutGap="2rem">
+            <!-- username -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Office" formControlName="office">
+                <mat-icon matSuffix>account_balance</mat-icon>
+                <button mat-button *ngIf="userForm.get('office').value" matSuffix mat-icon-button
+                  (click)="userForm.get('office').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('office').hasError('required')">
+                  Office is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- mobile number -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Fax" formControlName="fax" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>dialpad</mat-icon>
+                <button mat-button *ngIf="userForm.get('fax').value" matSuffix mat-icon-button
+                  (click)="userForm.get('fax').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('fax').hasError('required')">
+                    Fax is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- email -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Mobile" formControlName="mobile" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>stay_primary_portrait</mat-icon>
+                <button mat-button *ngIf="userForm.get('mobile').value" matSuffix mat-icon-button
+                  (click)="userForm.get('mobile').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('mobile').hasError('required')">
+                  Mobile is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="form-group" fxLayout fxLayoutGap="2rem">
+            <!-- username -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Contact 1" formControlName="contact1">
+                <mat-icon matSuffix>local_phone</mat-icon>
+                <button mat-button *ngIf="userForm.get('contact1').value" matSuffix mat-icon-button
+                  (click)="userForm.get('contact1').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('contact1').hasError('required')">
+                    Contact1 is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- mobile number -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Contact2" formControlName="contact2" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>settings_phone</mat-icon>
+                <button mat-button *ngIf="userForm.get('contact2').value" matSuffix mat-icon-button
+                  (click)="userForm.get('contact2').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('contact2').hasError('required')">
+                    Contact2 is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- email -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Comment" formControlName="comment" [errorStateMatcher]="matcher">
+                <mat-icon matSuffix>comment</mat-icon>
+                <button mat-button *ngIf="userForm.get('comment').value" matSuffix mat-icon-button
+                  (click)="userForm.get('comment').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('comment').hasError('required')">
+                  Mobile is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+      </form>
+    </mat-dialog-content>
+    <br>
+    <!-- <mat-dialog-actions> -->
+      <div fxLayout fxLayoutAlign="start" fxLayoutGap="2rem">
+       <div>
+        <button mat-button (click)="onSubmit()" [mat-dialog-close]="userForm.value">
+            <span><strong>Add</strong></span>
+          </button>
+       </div>
+        <div>
+            <button mat-button  [mat-dialog-close]>
+                <span><strong>Cancel</strong></span>
+              </button>
+        </div>
+      </div>
+    <!-- </mat-dialog-actions> -->
+  </div>
+  <div fxLayout fxLayoutAlign="center center">
+    <mat-spinner *ngIf="showSpinner" [diameter]="100"></mat-spinner>
+  </div>
+  <!-- [disabled]="!userForm.valid" -->

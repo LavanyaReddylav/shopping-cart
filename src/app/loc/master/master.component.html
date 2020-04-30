@@ -1,0 +1,150 @@
+<br>
+<div class="counter-master">
+    <div fxLayout fxLayoutAlign="space-between">
+        <div>
+            <button mat-raised-button  (click)="openDialog()">
+                <mat-icon>add_circle</mat-icon>&nbsp;<span><strong>Add LOC</strong></span>
+            </button>
+        </div>
+    </div>
+    <br>
+
+<!-- Filters section -->
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h4>Filters <mat-icon>layers</mat-icon>
+        </h4>
+      </mat-card-title>
+    </mat-card-header>
+    <form >
+      <div fxLayout fxLayoutGap="2rem" class="filters">
+      <div>
+        <mat-form-field>
+          <mat-label>Status</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let food of status" [value]="food.value">
+              {{food.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button (click)="loadBeats()">
+        <mat-icon>autorenew</mat-icon>&nbsp;<span><strong>Load</strong></span>
+      </button>
+      <button mat-raised-button  class="export" (click)="captureScreen()" >
+        <mat-icon>open_in_new</mat-icon>&nbsp;<span><strong>Export</strong></span>
+      </button>
+      </div>
+    <br><br>
+
+         <!--Load And Export-->
+    <!-- <div fxLayout fxLayoutGap="1rem">
+      </div> -->
+    </form>
+ 
+  </mat-card>
+    <br>
+
+    <!-- Table -->
+    <mat-card>
+        <!-- Search Filter -->
+  <div fxLayout fxLayoutAlign="end">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+      <div class="mat-elevation-z8" id="content" #content>
+        <div id="pdfTable" #pdfTable>
+          <table mat-table [dataSource]="dataSource" matSort id="contentToConvert">
+        
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell  *matHeaderCellDef mat-sort-header>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header> S.No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="company">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header> Company </th>
+              <td mat-cell *matCellDef="let element"> {{element.company}} </td>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="contract_no">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header> Contract No </th>
+              <td mat-cell *matCellDef="let element"> {{element.contract_no}} </td>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="loc_no">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header> LOC No </th>
+              <td mat-cell *matCellDef="let element"> {{element.loc_no}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="tolerance">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header> Tolerance </th>
+              <td mat-cell *matCellDef="let element"> {{element.tolerance}} </td>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="created_by">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header> Created By </th>
+              <td mat-cell *matCellDef="let element"> {{element.created_by}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="amount">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header>Amount </th>
+              <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header>Description </th>
+              <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+            
+            <ng-container matColumnDef="opened">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header>Opened </th>
+              <td mat-cell *matCellDef="let element"> {{element.opened}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="closed">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header>Closed </th>
+              <td mat-cell *matCellDef="let element"> {{element.closed}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+        
+    </mat-card>
+    
+    <!-- <mat-card *ngIf="showTable">
+        <div fxLayout fxLayoutAlign="center center">
+            <mat-spinner *ngIf="!counters" [diameter]="70"></mat-spinner>
+        </div>
+        <counter-master-table [counters]="counters" *ngIf="counters" (successEvent)="loadCounters()">
+        </counter-master-table>
+    </mat-card> -->
+</div>
+<br>

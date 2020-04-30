@@ -1,6 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort,  } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import { ExcelService } from '../services/excel.service';
+import * as jspdf from 'jspdf';
+import html2canvas from 'html2canvas'; 
+
 
 @Component({
   selector: 'app-table',
@@ -9,15 +13,16 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class TableComponent implements OnInit {
 
-  displayedColumns: string[] = ['select','position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['select','position', 'id', 'name', 'no','status','category'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-
+@ViewChild('content',{static:true}) content:ElementRef;
+@ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   selection = new SelectionModel<PeriodicElement>(true, []);
 
  
-  constructor() { }
+  constructor(private _excel:ExcelService) { }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -42,6 +47,7 @@ export class TableComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
   }
 
 
@@ -54,33 +60,62 @@ export class TableComponent implements OnInit {
     }
   }
 
+  export(){
+    this._excel.exportAsExcelFile(this.dataSource.data, 'Data');
+  }
+  public downloadAsPDF() {
+    const doc = new jspdf();
+
+    const specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+
+    const pdfTable = this.pdfTable.nativeElement;
+
+    doc.fromHTML(pdfTable.innerHTML, 4, 4, {
+      width: 250,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('tableToPdf.pdf');
+  }
+  captureScreen()      {  
+    var data = document.getElementById('contentToConvert');  
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight,pageHeight)  
+      pdf.save('MYPdf.pdf'); // Generated PDF   
+    });  
+  }
 }
 export interface PeriodicElement {
+  id:string;
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  no: number;
+  status: string;
+  category: string;
+  position:number;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
+  {position:1,id: 'ABC', name: 'ABC Company', no: 522, status: 'Active',category:'CU,NG,CP'},
+  {position:2,id: 'A & H', name: 'A & H Hulling', no: 854, status: 'Active',category:'CU,NG,CP'},
+  {position:3,id: 'DON', name: 'DONGWON Farms co.Ltd', no: 744, status: 'Active',category:'CU,NG,CP'},
+  {position:4,id: 'DURAN', name: 'Duran Trucking', no: 101, status: 'Active',category:'CU,NG,CP'},
+  {position:5,id: 'FHS', name: 'Frank Hanson & Son Inc.', no: 111, status: 'Active',category:'SH,NG,CG'},
+  {position:6,id: 'ABC', name: 'ABC Company', no: 522, status: 'Active',category:'CU,NG,CP'},
+  {position:7,id: 'A & H', name: 'A & H Hulling', no: 854, status: 'Active',category:'CU,NG,CP'},
+  {position:8,id: 'DON', name: 'DONGWON Farms co.Ltd', no: 744, status: 'Active',category:'CU,NG,CP'},
+  {position:9,id: 'DURAN', name: 'Duran Trucking', no: 101, status: 'Active',category:'CU,NG,CP'},
+  {position:10,id: 'FHS', name: 'Frank Hanson & Son Inc.', no: 111, status: 'Active',category:'SH,NG,CG'}
 ];

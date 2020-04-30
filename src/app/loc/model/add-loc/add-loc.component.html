@@ -1,0 +1,673 @@
+<mat-tab-group dynamicHeight [(selectedIndex)]="activeTabIndex" mat-stretch-tabs>
+
+	<mat-tab>
+        <ng-template mat-tab-label>LOC</ng-template>
+		<div>
+        <br>
+                <mat-horizontal-stepper  #stepper>
+                  <mat-step [stepControl]="firstFormGroup">
+                    <form [formGroup]="locForm">
+                      <ng-template  matStepperIcon="home" matStepLabel>LOC Details
+                       <!-- <mat-icon>home</mat-icon> -->
+                      </ng-template>
+                      <br>
+                       <!-- username -->
+                       <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="LOC No" formControlName="lc_no">
+                          <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+                          <button mat-button *ngIf="locForm.get('lc_no').value" matSuffix mat-icon-button
+                            (click)="locForm.get('lc_no').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('lc_no').hasError('required')">
+                            LC No is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <!-- mobile number -->
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Contract No" formControlName="contract_no" [errorStateMatcher]="matcher">
+                          <!-- <mat-icon matSuffix>dialpad</mat-icon> -->
+                          <button mat-button *ngIf="locForm.get('contract_no').value" matSuffix mat-icon-button
+                            (click)="locForm.get('contract_no').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('contract_no').hasError('required')">
+                            Contract No is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                            <mat-label>Date Of Issue</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="date_of_issue">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                          <mat-error *ngIf="locForm.get('date_of_issue').hasError('required')">
+                            Date Of Issue is <strong>required</strong>
+                          </mat-error>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-label>Date Of Close</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="date_of_leave">
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                          </mat-form-field>
+                          <mat-error *ngIf="locForm.get('date_of_leave').hasError('required')">
+                            Date Of Close is <strong>required</strong>
+                          </mat-error>
+                    </div>
+                      <br>
+                      <div>
+                        <button mat-button matStepperNext><span>Next</span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step [stepControl]="secondFormGroup">
+                    <form [formGroup]="locForm">
+                      <ng-template matStepLabel > Other Details</ng-template>
+                      <br>
+                      <div>
+                   <!-- email -->
+                   <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="Amount" formControlName="amount" [errorStateMatcher]="matcher">
+                      <!-- <mat-icon matSuffix>category</mat-icon> -->
+                      <button mat-button *ngIf="locForm.get('amount').value" matSuffix mat-icon-button
+                        (click)="locForm.get('amount').setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error *ngIf="locForm.get('amount').hasError('required')">
+                        Amount is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="Description Of Goods" formControlName="desc_goods">
+                      <!-- <mat-icon matSuffix>person_pin_circle</mat-icon> -->
+                      <button mat-button *ngIf="locForm.get('desc_goods').value" matSuffix mat-icon-button
+                        (click)="locForm.get('desc_goods').setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error *ngIf="locForm.get('desc_goods').hasError('required')">
+                        Description Of Goods is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder=" Percentagee Of Tolerance " formControlName="perc_tol">
+                      <!-- <mat-icon matSuffix>person_pin_circle</mat-icon> -->
+                      <button mat-button *ngIf="locForm.get('perc_tol').value" matSuffix mat-icon-button
+                        (click)="locForm.get('perc_tol').setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error *ngIf="locForm.get('perc_tol').hasError('required')">
+                        Percentagee Of Tolerance  is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="Comment" formControlName="comment" [errorStateMatcher]="matcher">
+                      <button mat-button *ngIf="locForm.get('comment').value" matSuffix mat-icon-button
+                        (click)="locForm.get('comment').setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error *ngIf="locForm.get('comment').hasError('required')">
+                        Comment is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                      </div>
+
+                      <br>
+                      <div>
+                        <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                        <button mat-button matStepperNext><span>Next</span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                      </div>
+                    </form>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Parties</ng-template>
+                    <br>
+                    <form [formGroup]="locForm">
+                      <ng-template matStepLabel>Fill out your address</ng-template>
+                      <!-- <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Applicant" formControlName="applicant">
+                          <button mat-button *ngIf="locForm.get('applicant').value" matSuffix mat-icon-button
+                            (click)="locForm.get('applicant').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('applicant').hasError('required')">
+                            Applicant is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div> -->
+                             
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Applicant</mat-label>
+                        <mat-select  ([ngModel])="applicant" name="applicant">
+                          <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                                            
+                  </div>
+                  <!-- {{applicant}} -->
+                  <ng-template matStepLabel>Cosignee</ng-template>
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Cosignee</mat-label>
+                        <mat-select formControlName="cosignee">
+                          <mat-option *ngFor="let food of foods" [value]="food.value" ([ngModel])="food.viewValue">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                                            
+                  </div>
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Notify Party</mat-label>
+                        <mat-select formControlName="notify_party">
+                          <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                                            
+                  </div> 
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Benificiary</mat-label>
+                        <mat-select formControlName="benificiary">
+                          <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                                            
+                  </div>  
+                      <!-- <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Benificiary" formControlName="benificiary">
+                          <button mat-button *ngIf="locForm.get('benificiary').value" matSuffix mat-icon-button
+                            (click)="locForm.get('benificiary').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('benificiary').hasError('required')">
+                            Benificiary is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div> -->
+                      <!-- <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Cosignee" formControlName="cosignee" [errorStateMatcher]="matcher">
+                          <button mat-button *ngIf="locForm.get('cosignee').value" matSuffix mat-icon-button
+                            (click)="locForm.get('cosignee').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('cosignee').hasError('required')">
+                            Cosignee is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div> -->
+                      <!-- <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Notify Party" formControlName="notify_party" [errorStateMatcher]="matcher">
+                          <button mat-button *ngIf="locForm.get('notify_party').value" matSuffix mat-icon-button
+                            (click)="locForm.get('notify_party').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('notify_party').hasError('required')">
+                            Notify Party is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div> -->
+     
+                      <br>
+                    </form>
+                    <div>
+                      <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                      <button mat-button matStepperNext><span>Next</span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Drawee Details</ng-template>
+                    <br>
+                    <form [formGroup]="locForm">
+                      <ng-template matStepLabel>Drawee Details</ng-template>
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Draft At" formControlName="draft_at">
+                          <button mat-button *ngIf="locForm.get('draft_at').value" matSuffix mat-icon-button
+                            (click)="locForm.get('draft_at').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('draft_at').hasError('required')">
+                            Draft At is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Drawee Bank Code" formControlName="drawee_bankcode">
+                          <button mat-button *ngIf="locForm.get('drawee_bankcode').value" matSuffix mat-icon-button
+                            (click)="locForm.get('drawee_bankcode').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('drawee_bankcode').hasError('required')">
+                            Drawee Bank Code is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Drawee" formControlName="drawee" [errorStateMatcher]="matcher">
+                          <button mat-button *ngIf="locForm.get('drawee').value" matSuffix mat-icon-button
+                            (click)="locForm.get('drawee').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('drawee').hasError('required')">
+                            Drawee is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      (OR)
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Enter" formControlName="enter" [errorStateMatcher]="matcher">
+                          <button mat-button *ngIf="locForm.get('enter').value" matSuffix mat-icon-button
+                            (click)="locForm.get('enter').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('enter').hasError('required')">
+                            Enter is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <br>
+                    </form>
+                    <div>
+                      <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                      <button mat-button matStepperNext><span>Next</span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                    </div>
+                  </mat-step>
+                  <mat-step>
+                    <ng-template matStepLabel>Address</ng-template>
+                    <br>
+                    <form [formGroup]="locForm">
+                      <ng-template matStepLabel>Fill out your address</ng-template>
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Address" formControlName="address">
+                          <button mat-button *ngIf="locForm.get('address').value" matSuffix mat-icon-button
+                            (click)="locForm.get('address').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('address').hasError('required')">
+                            Address is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="City" formControlName="city">
+                          <button mat-button *ngIf="locForm.get('city').value" matSuffix mat-icon-button
+                            (click)="locForm.get('city').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('city').hasError('required')">
+                            City is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="State" formControlName="state" [errorStateMatcher]="matcher">
+                          <button mat-button *ngIf="locForm.get('state').value" matSuffix mat-icon-button
+                            (click)="locForm.get('state').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('state').hasError('required')">
+                              State is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <mat-form-field>
+                          <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" [errorStateMatcher]="matcher">
+                          <button mat-button *ngIf="locForm.get('zipcode').value" matSuffix mat-icon-button
+                            (click)="locForm.get('zipcode').setValue('')">
+                            <mat-icon>close</mat-icon>
+                          </button>
+                          <mat-error *ngIf="locForm.get('zipcode').hasError('required')">
+                            Zipcode is <strong>required</strong>
+                          </mat-error>
+                        </mat-form-field>
+                      </div>
+                      <br>
+                    </form>
+                    <div>
+                      <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                      <button mat-button matStepperNext><span>Save</span>&nbsp;&nbsp;<mat-icon>library_add_check</mat-icon> </button>
+                    </div>
+                  </mat-step>
+                </mat-horizontal-stepper>
+               
+		</div>
+	</mat-tab>
+  
+	<mat-tab>
+		<ng-template mat-tab-label>Parties</ng-template>
+		<div>
+            <mat-horizontal-stepper  #stepper>
+      
+              <mat-step>
+                <ng-template matStepLabel>Applicant</ng-template>
+                <br>
+                <form [formGroup]="partiesForm">
+                  <ng-template matStepLabel>Applicant</ng-template>
+                  
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Applicant</mat-label>
+                        <mat-select formControlName="applicant" ([ngModel])="applicant">
+                          <mat-option *ngFor="let food of foods" [value]="food.value" >
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                                            
+                  </div>
+                  
+              <div formGroupName="address">
+                <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="Address" formControlName="address">
+                      <button mat-button *ngIf="partiesForm.get(['address','address']).value" matSuffix mat-icon-button
+                        (click)="partiesForm.get(['address','address']).setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <!-- <mat-error *ngIf="partiesForm.get(['address','address']).hasError('required')">
+                        Address is <strong>required</strong>
+                      </mat-error> -->
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="City" formControlName="city">
+                      <button mat-button *ngIf="partiesForm.get(['address','city']).value" matSuffix mat-icon-button
+                        (click)="partiesForm.get(['address','city']).setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <!-- <mat-error *ngIf="partiesForm.get(['address','city']).hasError('required')">
+                        City is <strong>required</strong>
+                      </mat-error> -->
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="State" formControlName="state" >
+                      <button mat-button *ngIf="partiesForm.get(['address','state']).value" matSuffix mat-icon-button
+                        (click)="partiesForm.get(['address','state']).setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <!-- <mat-error *ngIf="partiesForm.get(['address','state']).hasError('required')">
+                          State is <strong>required</strong>
+                      </mat-error> -->
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" >
+                      <button mat-button *ngIf="partiesForm.get(['address','zipcode']).value" matSuffix mat-icon-button
+                        (click)="partiesForm.get(['address','zipcode']).setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <!-- <mat-error *ngIf="partiesForm.get(['address','zipcode']).hasError('required')">
+                        Zipcode is <strong>required</strong>
+                      </mat-error> -->
+                    </mat-form-field>
+                  </div>
+              </div>
+ 
+                  <br>
+                </form>
+                <div>
+                  <button mat-button matStepperNext><span>Next</span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                </div>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Cosignee</ng-template>
+                <br>
+                <form [formGroup]="partiesForm">
+                    <ng-template matStepLabel>Cosignee</ng-template>
+                    <div>
+                      <mat-form-field>
+                          <mat-label>Cosignee</mat-label>
+                          <mat-select formControlName="cosignee">
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                              {{food.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                                              
+                    </div>   
+                <div formGroupName="address1">
+                  <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="Address" formControlName="address">
+                        <button mat-button *ngIf="partiesForm.get(['address1','address']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address1','address']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address1','address']).hasError('required')">
+                          address1 is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="City" formControlName="city">
+                        <button mat-button *ngIf="partiesForm.get(['address1','city']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address1','city']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address1','city']).hasError('required')">
+                          City is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="State" formControlName="state" >
+                        <button mat-button *ngIf="partiesForm.get(['address1','state']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address1','state']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address1','state']).hasError('required')">
+                            State is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" >
+                        <button mat-button *ngIf="partiesForm.get(['address1','zipcode']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address1','zipcode']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address1','zipcode']).hasError('required')">
+                          Zipcode is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                </div>
+                  <br>
+                </form>
+                <div>
+                  <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                  <button mat-button matStepperNext><span>Next</span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                </div>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Notify Party</ng-template>
+                <br>
+                <form [formGroup]="partiesForm">
+                    <ng-template matStepLabel>Notify Party</ng-template>
+                    <div>
+                      <mat-form-field>
+                          <mat-label>Notify Party</mat-label>
+                          <mat-select formControlName="notify_party">
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                              {{food.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                                              
+                    </div>   
+                <div formGroupName="address2">
+                  <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="Address" formControlName="address">
+                        <button mat-button *ngIf="partiesForm.get(['address2','address']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address2','address']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address2','address']).hasError('required')">
+                          address2 is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="City" formControlName="city">
+                        <button mat-button *ngIf="partiesForm.get(['address2','city']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address2','city']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address2','city']).hasError('required')">
+                          City is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="State" formControlName="state" >
+                        <button mat-button *ngIf="partiesForm.get(['address2','state']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address2','state']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address2','state']).hasError('required')">
+                            State is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" >
+                        <button mat-button *ngIf="partiesForm.get(['address2','zipcode']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address2','zipcode']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address2','zipcode']).hasError('required')">
+                          Zipcode is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                </div>
+                  <br>
+                </form>
+                <div>
+                  <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                  <button mat-button matStepperNext><span>Next</span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                </div>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Benificiary</ng-template>
+                <br>
+                <form [formGroup]="partiesForm">
+                    <ng-template matStepLabel>Benificiary</ng-template>
+                    <div>
+                      <mat-form-field>
+                          <mat-label>Benificiary</mat-label>
+                          <mat-select formControlName="benificiary">
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                              {{food.viewValue}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                                              
+                    </div>   
+                <div formGroupName="address3">
+                  <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="address" formControlName="address">
+                        <button mat-button *ngIf="partiesForm.get(['address3','address']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address3','address']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address3','address']).hasError('required')">
+                          address3 is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="City" formControlName="city">
+                        <button mat-button *ngIf="partiesForm.get(['address3','city']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address3','city']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address3','city']).hasError('required')">
+                          City is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="State" formControlName="state" >
+                        <button mat-button *ngIf="partiesForm.get(['address3','state']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address3','state']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address3','state']).hasError('required')">
+                            State is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                    <div>
+                      <mat-form-field>
+                        <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" >
+                        <button mat-button *ngIf="partiesForm.get(['address3','zipcode']).value" matSuffix mat-icon-button
+                          (click)="partiesForm.get(['address3','zipcode']).setValue('')">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- <mat-error *ngIf="partiesForm.get(['address3','zipcode']).hasError('required')">
+                          Zipcode is <strong>required</strong>
+                        </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                </div>
+                  <br>
+                </form>
+                <div>
+                  <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                  <button mat-button matStepperNext><span>Save</span>&nbsp;&nbsp;<mat-icon>library_add_check</mat-icon> </button>
+                </div>
+              </mat-step>
+              </mat-horizontal-stepper>
+		</div>
+	</mat-tab>
+</mat-tab-group>

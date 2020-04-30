@@ -1,0 +1,61 @@
+body {
+    font-family: 'lato', sans-serif;
+ 
+  }
+  $text-color: rgb(148, 144, 144); //text color grey
+
+
+  table {
+    width: 70%;
+    // float: right;
+    // padding:2rem 10rem 5rem 0rem;
+    margin:2rem 15rem;
+  }
+  mat-card{
+    max-width: 100%;
+    margin-left:15rem;
+    margin-right:11rem;
+
+}
+  mat-card-title{
+    text-align:center;
+  padding-top: 2rem;
+  }
+.others{
+    margin:3rem 2rem;
+    font-size: 0.9rem;
+  }
+  .raised{
+    margin:3rem ;
+ 
+  }
+  td, th {
+    width: 10%;
+    font-size: 0.9rem;
+  }
+th{
+    font-weight: bold;
+
+}
+tr:hover{
+    background-color: #EEE;
+}
+ 
+.button{
+outline: none;
+background-color:#6DABE4 !important ;
+
+// mat-mini-fab:disabled{
+// background-color:#6DABE4 !important ;
+
+// }
+// mat-mini-fab:disabled::after{
+//   background-color:#6DABE4 !important ;
+  
+//   }
+}
+:disabled{
+background-color:#6DABE4  ;
+  
+}
+

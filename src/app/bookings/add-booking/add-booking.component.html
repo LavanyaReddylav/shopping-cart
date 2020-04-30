@@ -1,0 +1,439 @@
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button> -->
+<mat-tab-group dynamicHeight [(selectedIndex)]="activeTabIndex" mat-stretch-tabs>
+    <mat-tab>
+        <ng-template mat-tab-label>Booking Details</ng-template>
+        <div class="main">
+            <mat-horizontal-stepper  #stepper>
+              <mat-step >
+                <form [formGroup]="bookingForm">
+                  <ng-template matStepLabel matStepperIcon="home">Fill out Booking Details</ng-template>
+                   <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="Booking No" formControlName="booking_no">
+                      <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+                      <button mat-button *ngIf="bookingForm.get('booking_no').value" matSuffix mat-icon-button
+                        (click)="bookingForm.get('booking_no').setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error *ngIf="bookingForm.get('booking_no').hasError('required')">
+                        Name is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+ 
+                  <div>
+                    <mat-form-field>
+                      <mat-label>Contract No</mat-label>
+                      <mat-select  formControlName="contract_no">
+                        <mat-option *ngFor="let food of contract" [value]="food.value">
+                          {{food.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="bookingForm.get('contract_no').hasError('required')">
+                        Company No is <strong>required</strong>
+                      </mat-error> -->
+                  </div>
+                  <!-- email -->
+                  <div>
+                    <mat-form-field>
+                      <input matInput type="text" placeholder="Sales Order" formControlName="sales_order" [errorStateMatcher]="matcher">
+                      <!-- <mat-icon matSuffix>sales_order</mat-icon> -->
+                      <button mat-button *ngIf="bookingForm.get('sales_order').value" matSuffix mat-icon-button
+                        (click)="bookingForm.get('sales_order').setValue('')">
+                        <mat-icon>close</mat-icon>
+                      </button>
+                      <mat-error *ngIf="bookingForm.get('sales_order').hasError('required')">
+                        Sales Order is <strong>required</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <mat-label>Status</mat-label>
+                      <mat-select>
+                        <mat-option *ngFor="let food of status" [value]="food.value">
+                          {{food.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="bookingForm.get('status').hasError('required')">
+                        Short Name is <strong>required</strong>
+                      </mat-error>  -->
+                  </div>
+             
+                  <br>
+                  <div>
+                    <button mat-button matStepperNext><span>Next</span>&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <!-- <ng-template matStepLabel>Done</ng-template> -->
+                <form [formGroup]="bookingForm">
+                  <ng-template matStepLabel matStepperIcon="home">Fill out Terms</ng-template>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Sales Terms
+                        </mat-label>
+                        <mat-select  formControlName="sales_terms">
+                          <mat-option *ngFor="let food of sales" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                  <!-- <mat-error *ngIf="bookingForm.get('sales_terms').hasError('required')">
+                    Sales terms is <strong>required</strong>
+                  </mat-error> -->
+                   <!-- username -->
+                   <div>
+                    <mat-form-field>
+                        <mat-label>Payment Terms
+                        </mat-label>
+                        <mat-select  formControlName="payment_terms">
+                          <mat-option *ngFor="let food of payment" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+                   <!-- <mat-error *ngIf="bookingForm.get('payment_terms').hasError('required')">
+                    City is <strong>required</strong>
+                  </mat-error> -->
+                  <!-- mobile number -->
+ 
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Commisioned Sales Agent
+                        </mat-label>
+                        <mat-select  formControlName="commisioned">
+                          <mat-option *ngFor="let food of commisioned" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    <!-- <mat-error *ngIf="bookingForm.get('commisioned').hasError('required')">
+                        Commisioned Sales Agent is <strong>required</strong>
+                    </mat-error> -->
+                  </div>
+                  <div>
+                    <mat-form-field>
+                        <mat-label> Container Hauler
+                        </mat-label>
+                        <mat-select  formControlName="container">
+                          <mat-option *ngFor="let food of container_hauler" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                  </div>
+                  <!-- <mat-error *ngIf="bookingForm.get('container_hauler').hasError('required')">
+                    Container Hauler is <strong>required</strong>
+                  </mat-error> -->
+                  <br>
+                  <div>
+                    <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                    <button mat-button matStepperNext><span>Next</span>&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Done</ng-template>
+                <form [formGroup]="bookingForm">
+                  <ng-template matStepLabel>Contact Details</ng-template>
+                         <!-- username -->
+                         <div>
+                          <mat-form-field>
+                            <input matInput type="text" placeholder="$Ton/Commision" formControlName="ton_commision">
+                            <!-- <mat-icon matSuffix>local_phone</mat-icon> -->
+                            <button mat-button *ngIf="bookingForm.get('ton_commision').value" matSuffix mat-icon-button
+                              (click)="bookingForm.get('ton_commision').setValue('')">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="bookingForm.get('ton_commision').hasError('required')">
+                                Contact1 is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                        <!-- email -->
+                        <div>
+                          <mat-form-field>
+                            <input matInput type="text" placeholder="Comment" formControlName="comment" [errorStateMatcher]="matcher">
+                            <!-- <mat-icon matSuffix>comment</mat-icon> -->
+                            <button mat-button *ngIf="bookingForm.get('comment').value" matSuffix mat-icon-button
+                              (click)="bookingForm.get('comment').setValue('')">
+                              <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="bookingForm.get('comment').hasError('required')">
+                              Comment is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                  <br>
+                </form>
+                <div>
+                  <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                  <button mat-button matStepperNext><span>Save</span>&nbsp;<mat-icon>library_add_check</mat-icon> </button>
+                </div>
+              </mat-step>
+            </mat-horizontal-stepper>
+            </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>Cust/Ship Details</ng-template>
+        <div class="main">
+            <mat-horizontal-stepper  #stepper>
+              <mat-step >
+                <form [formGroup]="bookingForm">
+                  <ng-template matStepLabel matStepperIcon="home">Fill out Cust Details</ng-template>
+                  <div>
+                    <mat-form-field>
+                      <mat-label>Customer</mat-label>
+                      <mat-select>
+                        <mat-option *ngFor="let food of foods" [value]="food.value">
+                          {{food.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!-- <mat-error *ngIf="bookingForm.get('status').hasError('required')">
+                        Short Name is <strong>required</strong>
+                      </mat-error>  -->
+                  </div>
+             <div>
+                <mat-form-field>
+                    <mat-label>Exporter/Shipper</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+             </div>
+             <div>
+                <mat-form-field>
+                    <mat-label>Cosignee</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+             </div>
+             <div>
+                <mat-form-field>
+                    <mat-label>Notify Party</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+             </div>
+                  <br>
+                  <div>
+                    <button mat-button matStepperNext><span>Next</span>&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step >
+                <form [formGroup]="bookingForm">
+                  <ng-template matStepLabel matStepperIcon="home">Fill out Shipping Line</ng-template>
+             <div>
+                <mat-form-field>
+                    <mat-label>Shipping Line</mat-label>
+                    <mat-select>
+                      <mat-option *ngFor="let food of shipping" [value]="food.value">
+                        {{food.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+             </div>
+             <div>
+                <mat-form-field>
+                  <input matInput type="text" placeholder="Vessel Name" formControlName="vessel_name" [errorStateMatcher]="matcher">
+                  <!-- <mat-icon matSuffix>sales_order</mat-icon> -->
+                  <button mat-button *ngIf="bookingForm.get('vessel_name').value" matSuffix mat-icon-button
+                    (click)="bookingForm.get('vessel_name').setValue('')">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                  <mat-error *ngIf="bookingForm.get('vessel_name').hasError('required')">
+                    Vessel Name is <strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+                        <!--  ending date  -->
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="Cut Off Date" >
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 disabled="false"></mat-datepicker>
+            </mat-form-field>
+          </div>
+                  <br>
+                  <div>
+                    <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                    <button mat-button matStepperNext><span>Next</span>&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step >
+                <form [formGroup]="bookingForm">
+                  <ng-template matStepLabel matStepperIcon="home">Fill out Port Details</ng-template>
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Port Of Arrival</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let food of arrival" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                 </div>
+                 <div>
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker1" placeholder="ETA" >
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1 disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                
+                  <div>
+                    <mat-form-field>
+                        <mat-label>Port Of Landing</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let food of delivery" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                 </div>
+                
+                 <div>
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker3" placeholder="ETD" >
+                      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                      <mat-datepicker #picker3 disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                  <br>
+                  <div>
+                    <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+                    <button mat-button matStepperNext><span>Save</span>&nbsp;<mat-icon>library_add_check</mat-icon> </button>
+                  </div>
+                </form>
+              </mat-step>
+            </mat-horizontal-stepper>
+            </div> 
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>Documents</ng-template>
+      <br>
+      <div fxLayout fxLayoutAlign="space-between">
+     <div>
+      <h5>Documents</h5>
+     </div>
+   <div>
+    <button mat-button>Generate</button>
+   </div>
+      </div>
+    <br>
+      <div class="example-section">
+    <div class="item">    
+      <mat-checkbox class="example-margin" [(ngModel)]="checked">Packing List</mat-checkbox>
+      <br>
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Certificate Of Origin</mat-checkbox>
+      <br>
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Certificate Of Weight</mat-checkbox>
+      <br>
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Shipping Order Confirmation</mat-checkbox>
+ </div>
+     <div class="item" style="margin-left:30%">
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Booking Summary</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Booking Details</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Truck Dispatch Notice</mat-checkbox>
+      <mat-checkbox class="example-margin" [(ngModel)]="indeterminate">Container Sclae Tickets</mat-checkbox>
+     </div>
+      </div>
+      <h5>Upload Documents</h5>
+      <br>
+       <div style="margin-left: 10%;">
+         <button mat-button>Create Phyto</button>
+         <button mat-button>APHIS Certficate</button>
+         <button mat-button>Upload</button>
+       </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>Containers</ng-template>
+      <!-- Search Filter -->
+      <div fxLayout fxLayoutAlign="end">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+          <div class="mat-elevation-z8" id="content" #content>
+            <div id="pdfTable" #pdfTable>
+              <table mat-table [dataSource]="dataSource" matSort id="contentToConvert">
+            
+            <!-- Checkbox Column -->
+            <ng-container matColumnDef="select">
+              <th mat-header-cell  *matHeaderCellDef mat-sort-header>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+              </th>
+              <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null"
+                              [checked]="selection.isSelected(row)"
+                              [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+              </td>
+            </ng-container>
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <th mat-header-cell  *matHeaderCellDef mat-sort-header> S.No. </th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell  *matHeaderCellDef mat-sort-header> Name </th>
+                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell  *matHeaderCellDef mat-sort-header> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+            
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="no">
+                  <th mat-header-cell  *matHeaderCellDef mat-sort-header> No </th>
+                  <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell  *matHeaderCellDef mat-sort-header> Status </th>
+                  <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="category">
+                  <th mat-header-cell  *matHeaderCellDef mat-sort-header> Category </th>
+                  <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+              <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+            </div>
+    </mat-tab>
+</mat-tab-group>

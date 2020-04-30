@@ -1,0 +1,46 @@
+
+mat-form-field{
+    max-width: 12rem;
+    font-size: 0.9rem;
+}
+button{
+    // background-color: #228b22;
+    color: #228b22 !important;
+}
+
+h2{
+    color:#228b22 ;
+    text-align: left;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+    // background-color: #228b22;
+
+  }
+
+  
+//   .mat-form-field {
+//     margin-top: 16px;
+//   }
+
+  ::ng-deep mat-step-header .mat-step-icon-selected {
+    background-color: #228b22 !important; 
+ }
+
+ .mat-tab-label {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: #228b22;
+    font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: #228b22;
+    font-weight: 700;
+}

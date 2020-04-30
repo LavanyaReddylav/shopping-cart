@@ -1,0 +1,192 @@
+<!-- <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+</button> -->
+<div class="main">
+<h2 mat-dialog-title>Add New Company
+</h2>
+<mat-horizontal-stepper  #stepper>
+  <mat-step >
+    <form [formGroup]="userForm">
+      <ng-template matStepLabel matStepperIcon="home">Fill out your name</ng-template>
+       <!-- username -->
+       <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Name" formControlName="name">
+          <!-- <mat-icon matSuffix>account_circle</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('name').value" matSuffix mat-icon-button
+            (click)="userForm.get('name').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('name').hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- mobile number -->
+      <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Company No" formControlName="company_no" [errorStateMatcher]="matcher">
+          <!-- <mat-icon matSuffix>dialpad</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('company_no').value" matSuffix mat-icon-button
+            (click)="userForm.get('company_no').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('company_no').hasError('required')">
+            Company No is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- email -->
+      <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Category" formControlName="category" [errorStateMatcher]="matcher">
+          <!-- <mat-icon matSuffix>category</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('category').value" matSuffix mat-icon-button
+            (click)="userForm.get('category').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('category').hasError('required')">
+            Category is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Short Name" formControlName="short_name">
+          <!-- <mat-icon matSuffix>person_pin_circle</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('short_name').value" matSuffix mat-icon-button
+            (click)="userForm.get('short_name').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('short_name').hasError('required')">
+            Short Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br>
+      <div>
+        <button mat-button matStepperNext><span>Next</span>&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <!-- <ng-template matStepLabel>Done</ng-template> -->
+    <form [formGroup]="userForm">
+      <ng-template matStepLabel matStepperIcon="home">Fill out your address</ng-template>
+      <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Address" formControlName="address" [errorStateMatcher]="matcher">
+          <!-- <mat-icon matSuffix>account_box</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('address').value" matSuffix mat-icon-button
+            (click)="userForm.get('address').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('address').hasError('required')">
+            Address is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+       <!-- username -->
+       <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="City" formControlName="city">
+          <!-- <mat-icon matSuffix>business</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('city').value" matSuffix mat-icon-button
+            (click)="userForm.get('city').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('city').hasError('required')">
+            City is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- mobile number -->
+      <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="State" formControlName="state" [errorStateMatcher]="matcher">
+          <!-- <mat-icon matSuffix>apartment</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('state').value" matSuffix mat-icon-button
+            (click)="userForm.get('state').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('state').hasError('required')">
+              State is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- email -->
+      <div>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Zipcode" formControlName="zipcode" [errorStateMatcher]="matcher">
+          <!-- <mat-icon matSuffix>drag_indicator</mat-icon> -->
+          <button mat-button *ngIf="userForm.get('zipcode').value" matSuffix mat-icon-button
+            (click)="userForm.get('zipcode').setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="userForm.get('zipcode').hasError('required')">
+            Zipcode is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <br>
+      <div>
+        <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+        <button mat-button matStepperNext><span>Next</span>&nbsp;<mat-icon>keyboard_arrow_right</mat-icon> </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <form [formGroup]="userForm">
+      <ng-template matStepLabel>Contact Details</ng-template>
+             <!-- username -->
+             <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Contact 1" formControlName="contact1">
+                <!-- <mat-icon matSuffix>local_phone</mat-icon> -->
+                <button mat-button *ngIf="userForm.get('contact1').value" matSuffix mat-icon-button
+                  (click)="userForm.get('contact1').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('contact1').hasError('required')">
+                    Contact1 is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- mobile number -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Contact2" formControlName="contact2" [errorStateMatcher]="matcher">
+                <!-- <mat-icon matSuffix>settings_phone</mat-icon> -->
+                <button mat-button *ngIf="userForm.get('contact2').value" matSuffix mat-icon-button
+                  (click)="userForm.get('contact2').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('contact2').hasError('required')">
+                    Contact2 is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <!-- email -->
+            <div>
+              <mat-form-field>
+                <input matInput type="text" placeholder="Comment" formControlName="comment" [errorStateMatcher]="matcher">
+                <!-- <mat-icon matSuffix>comment</mat-icon> -->
+                <button mat-button *ngIf="userForm.get('comment').value" matSuffix mat-icon-button
+                  (click)="userForm.get('comment').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-error *ngIf="userForm.get('comment').hasError('required')">
+                  Comment is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+      <br>
+    </form>
+    <div>
+      <button mat-button matStepperPrevious><mat-icon>keyboard_arrow_left</mat-icon> &nbsp;<span>Back</span> </button>
+      <button mat-button matStepperNext><span>Save</span>&nbsp;<mat-icon>library_add_check</mat-icon> </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+</div>

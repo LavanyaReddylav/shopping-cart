@@ -1,0 +1,82 @@
+
+mat-form-field{
+    max-width: 12rem;
+    font-size: 0.9rem;
+}
+button{
+    // background-color: #228b22;
+    color: #228b22 !important;
+}
+
+h2{
+    color:#228b22 ;
+    text-align: left;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+    // background-color: #228b22;
+
+  }
+
+  
+//   .mat-form-field {
+//     margin-top: 16px;
+//   }
+
+  ::ng-deep mat-step-header .mat-step-icon-selected {
+    background-color: #228b22 !important; 
+ }
+
+ .mat-tab-label {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: #228b22;
+    font-weight: 700;
+}
+
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: #228b22;
+    font-weight: 700;
+}
+
+.example-section{
+    width: 500px;
+    border-radius: .5em;
+    padding: 10px;  
+}
+.item{
+    width: 100px;
+    padding:2px 60px 20px 90px;
+    // background-color: rgba(111,41,97,.3);
+    // border: 2px solid rgba(111,41,97,.5);
+    display: inline-block;
+    vertical-align: middle
+}
+
+table {
+    width: 100%;
+    tr:hover {
+      background-color: #EEE;
+    }
+  }
+th,td{
+    font-size:0.7rem;
+    font-weight: bold;
+}
+//   .mat-elevation-z8{
+//     margin:2rem 3rem auto;
+
+//   }
+
+  .elevation{
+    margin:2rem 70rem auto;
+  }    
+  input{
+    width:15rem;
+  }
